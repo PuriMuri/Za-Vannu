@@ -52,86 +52,14 @@
   <img src="gallery/IMG-20251026-WA0044.jpg" class="active">
 </div>
 
-<script>
-  const images = document.querySelectorAll('.gallery img');
-  let currentIndex = 0;
 
-  function showImage(index) {
-    images.forEach((img, i) => {
-      img.classList.toggle('active', i === index);
-    });
-  }
 
-  // Automatic slideshow every 3 seconds
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage(currentIndex);
-  }, 3000);
 
-  // Navigation buttons
-  document.querySelector('.prev').addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage(currentIndex);
-  });
-
-  document.querySelector('.next').addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage(currentIndex);
-  });
-</script>
-
-<div style="text-align:center; margin:20px;">
-  <h2></h2>
-  <input class="buttoni" type="file" id="fileInput">
-  <button class="buttoni" id="uploadBtn">Dodaj sliku 📸</button>
-  <p id="status"></p>
-</div>
-
-<script>
-const uploadBtn = document.getElementById('uploadBtn');
-const fileInput = document.getElementById('fileInput');
-const status = document.getElementById('status');
-
-uploadBtn.addEventListener('click', async () => {
-  const file = fileInput.files[0];
-  if (!file) {
-    status.textContent = "Please select a file first.";
-    return;
-  }
-
-  // Replace with your ImageKit upload URL and public key
-  const uploadUrl = "https://ik.imagekit.io/frfa/upload";
-  const publicKey = "public_BwaDXRJQaa1n2OPh9N9+JUL5NQM=";
-  const formData = new FormData();
-
-  formData.append("file", file);
-  formData.append("fileName", file.name);
-  formData.append("publicKey", publicKey);
-
-  status.textContent = "Uploading...";
-
-  try {
-    const response = await fetch(uploadUrl, {
-      method: "POST",
-      body: formData
-    });
-    const data = await response.json();
-
-    if (data.url) {
-      status.innerHTML = `✅ Uploaded! <a href="${data.url}" target="_blank">View File</a>`;
-    } else {
-      status.textContent = "Upload failed.";
-      console.error(data);
-    }
-  } catch (err) {
-    status.textContent = "Error: " + err.message;
-  }
-});
-</script>
 
 
 
 
 </div>
 </body>
+
 </html>
