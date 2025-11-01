@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Za Vannu ❤️</title>
+</head>
+<body>
+    <header  class="header">
+        <div style="display: space-between; width: 100%; align-items: center; flex-direction: row; display: flex;">
+            <p style="margin-left: 20px; margin-right: 10px; text-align: left;" class="timer"></p>
+            <div style="margin-left: auto; margin-right: 20px;  gap: 100px;">
+                <button onclick="location.href='letter.html'" class="buttoni"  style="height: 95%; margin-top: 1.5px;">Love letter 💌</button>
+                <button onclick="location.href='music.html'" class="buttoni" style="height: 95%; margin-top: 1.5px;">Music 🎵</button>
+                <button onclick="location.href='gallery.html'" class="buttoni" style="height: 95%; margin-top: 1.5px;">Gallery 🖼️</button>
+            </div>
+            
+        </div>
+    </header>
+
+
+<script src="time.js"></script>
+    <div class="mainBox">
+        <div class="titleBox">
+            <h1 class="title">Samo za Vannu ❤️</h1>
+        </div>
+<div class="galleryBox">
+  <img src="gallery/IMG-20251026-WA0019.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0020.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0022.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0023.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0024.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0026.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0027.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0028.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0029.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0030.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0031.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0032.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0033.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0034.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0035.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0036.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0037.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0038.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0039.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0040.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0041.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0042.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0043.jpg" class="active">
+  <img src="gallery/IMG-20251026-WA0044.jpg" class="active">
+</div>
+
+<script>
+  const images = document.querySelectorAll('.gallery img');
+  let currentIndex = 0;
+
+  function showImage(index) {
+    images.forEach((img, i) => {
+      img.classList.toggle('active', i === index);
+    });
+  }
+
+  // Automatic slideshow every 3 seconds
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
+  }, 3000);
+
+  // Navigation buttons
+  document.querySelector('.prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
+  });
+
+  document.querySelector('.next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
+  });
+</script>
+
+<div style="text-align:center; margin:20px;">
+  <h2></h2>
+  <input class="buttoni" type="file" id="fileInput">
+  <button class="buttoni" id="uploadBtn">Dodaj sliku 📸</button>
+  <p id="status"></p>
+</div>
+
+<script>
+const uploadBtn = document.getElementById('uploadBtn');
+const fileInput = document.getElementById('fileInput');
+const status = document.getElementById('status');
+
+uploadBtn.addEventListener('click', async () => {
+  const file = fileInput.files[0];
+  if (!file) {
+    status.textContent = "Please select a file first.";
+    return;
+  }
+
+  // Replace with your ImageKit upload URL and public key
+  const uploadUrl = "https://ik.imagekit.io/frfa/upload";
+  const publicKey = "public_BwaDXRJQaa1n2OPh9N9+JUL5NQM=";
+  const formData = new FormData();
+
+  formData.append("file", file);
+  formData.append("fileName", file.name);
+  formData.append("publicKey", publicKey);
+
+  status.textContent = "Uploading...";
+
+  try {
+    const response = await fetch(uploadUrl, {
+      method: "POST",
+      body: formData
+    });
+    const data = await response.json();
+
+    if (data.url) {
+      status.innerHTML = `✅ Uploaded! <a href="${data.url}" target="_blank">View File</a>`;
+    } else {
+      status.textContent = "Upload failed.";
+      console.error(data);
+    }
+  } catch (err) {
+    status.textContent = "Error: " + err.message;
+  }
+});
+</script>
+
+
+
+
+</div>
+</body>
+</html>

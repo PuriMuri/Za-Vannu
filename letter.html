@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Za Vannu ❤️</title>
+</head>
+<body>
+    <header  class="header">
+        <div style="display: space-between; width: 100%; align-items: center; flex-direction: row; display: flex;">
+            <p style="margin-left: 20px; margin-right: 10px; text-align: left;" class="timer"></p>
+            <div style="margin-left: auto; margin-right: 20px;  gap: 100px;">
+                <button onclick="location.href='letter.html'" class="buttoni"  style="height: 95%; margin-top: 1.5px;">Love letter 💌</button>
+                <button onclick="location.href='music.html'" class="buttoni" style="height: 95%; margin-top: 1.5px;">Music 🎵</button>
+                <button onclick="location.href='gallery.html'" class="buttoni" style="height: 95%; margin-top: 1.5px;">Gallery 🖼️</button>
+            </div>
+            
+        </div>
+    </header>
+    <script src="time.js"></script>
+    <div class="mainBox">
+        <div class="titleBox">
+            <h1 class="title">Samo za Vannu ❤️</h1>
+        </div>
+        <div class="letterBox" id="letterBox">
+          <h1 class="title">Pisamce 💌</h1>
+          <p class="arrow">👈</p>
+          <div class="letter">
+            <p>Opet nemogu virovat da je vec 4 miseca. Isker baš mi je drago. <br>
+            Kolko god se često vidimo uvik mi falis. Uvik mi fali kad se ono iskreno nasmiješ odma i ja buden sritniji.<br>
+            Čini mi se da san malo pretira sa pustin bonbonima za poklon ova 4 miseca pa san tija napravit ovo kako bi se uvik mogla stiti kolko te volin. <br>
+            Stvarno ti se divin sta me trpis ova 4 miseca al da se tu nac i nesto dobro.<br>
+            Nadan se da ti se sviđa ovi posebni poklon. <br>
+            Voli te tvoja beba ❤️
+            </p>
+          </div>
+        </div>
+
+<script>
+  const box = document.getElementById('letterBox');
+  box.addEventListener('click', () => {
+    box.classList.toggle('expanded');
+  });
+</script>
+            
+    </div>
+</body>
+</html>
